@@ -19,7 +19,7 @@
     <script>
       async function loadCharts() {
         const response = await fetch(
-          "http://localhost:8080/analytics/workouts",
+          "https://student-fitness-performance-tracker-production.up.railway.app/analytics/workouts",
         );
 
         const workouts = await response.json();
@@ -280,21 +280,21 @@
     <script>
       async function loadAnalytics() {
         const totalWorkouts = await fetch(
-          "http://localhost:8080/analytics/total-workouts",
+          "https://student-fitness-performance-tracker-production.up.railway.app/analytics/total-workouts",
         );
 
         document.getElementById("totalWorkouts").textContent =
           await totalWorkouts.text();
 
         const totalCalories = await fetch(
-          "http://localhost:8080/analytics/total-calories",
+          "https://student-fitness-performance-tracker-production.up.railway.app/analytics/total-calories",
         );
 
         document.getElementById("totalCalories").textContent =
           await totalCalories.text();
 
         const averageReps = await fetch(
-          "http://localhost:8080/analytics/average-reps",
+          "https://student-fitness-performance-tracker-production.up.railway.app/analytics/average-reps",
         );
 
         document.getElementById("averageReps").textContent = Number(
@@ -302,7 +302,7 @@
         ).toFixed(1);
 
         const averageSets = await fetch(
-          "http://localhost:8080/analytics/average-sets",
+          "https://student-fitness-performance-tracker-production.up.railway.app/analytics/average-sets",
         );
 
         document.getElementById("averageSets").textContent = Number(

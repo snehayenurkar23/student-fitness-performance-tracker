@@ -197,27 +197,27 @@ async function loadProgress() {
 
     const workouts =
         Number(await (await fetch(
-            "http://localhost:8080/analytics/total-workouts"
+            "https://student-fitness-performance-tracker-production.up.railway.app/analytics/total-workouts"
         )).text());
 
     const calories =
         Number(await (await fetch(
-            "http://localhost:8080/analytics/total-calories"
+            "https://student-fitness-performance-tracker-production.up.railway.app/analytics/total-calories"
         )).text());
 
     const sleep =
         Number(await (await fetch(
-            "http://localhost:8080/analytics/total-sleep"
+            "https://student-fitness-performance-tracker-production.up.railway.app/analytics/total-sleep"
         )).text());
 
     const steps =
         Number(await (await fetch(
-            "http://localhost:8080/analytics/total-steps"
+            "https://student-fitness-performance-tracker-production.up.railway.app/analytics/total-steps"
         )).text());
 
     const water =
         Number(await (await fetch(
-            "http://localhost:8080/analytics/total-water"
+            "https://student-fitness-performance-tracker-production.up.railway.app/analytics/total-water"
         )).text());
 
     const workoutPercent =

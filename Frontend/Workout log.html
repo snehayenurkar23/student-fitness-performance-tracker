@@ -195,7 +195,9 @@
 
     <script>
       async function loadWorkouts() {
-        const response = await fetch("http://localhost:8080/workouts");
+        const response = await fetch(
+          "https://student-fitness-performance-tracker-production.up.railway.app/workouts",
+        );
 
         const workouts = await response.json();
 
@@ -243,13 +245,16 @@
             ),
           };
 
-          await fetch("http://localhost:8080/workouts", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
+          await fetch(
+            "https://student-fitness-performance-tracker-production.up.railway.app/workouts",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(workout),
             },
-            body: JSON.stringify(workout),
-          });
+          );
 
           document.getElementById("workoutForm").reset();
 
@@ -260,9 +265,12 @@
           return;
         }
 
-        await fetch(`http://localhost:8080/workouts/${id}`, {
-          method: "DELETE",
-        });
+        await fetch(
+          `https://student-fitness-performance-tracker-production.up.railway.app/workouts/${id}`,
+          {
+            method: "DELETE",
+          },
+        );
 
         loadWorkouts();
       }

@@ -260,7 +260,9 @@
 
     <script>
       async function loadSleep() {
-        const response = await fetch("http://localhost:8080/sleep");
+        const response = await fetch(
+          "https://student-fitness-performance-tracker-production.up.railway.app/sleep",
+        );
 
         const records = await response.json();
 
@@ -287,7 +289,9 @@
       }
 
       async function loadSteps() {
-        const response = await fetch("http://localhost:8080/steps");
+        const response = await fetch(
+          "https://student-fitness-performance-tracker-production.up.railway.app/steps",
+        );
 
         const records = await response.json();
 
@@ -314,7 +318,9 @@
       }
 
       async function loadWater() {
-        const response = await fetch("http://localhost:8080/water");
+        const response = await fetch(
+          "https://student-fitness-performance-tracker-production.up.railway.app/water",
+        );
 
         const records = await response.json();
 
@@ -345,20 +351,23 @@
         .addEventListener("submit", async function (e) {
           e.preventDefault();
 
-          await fetch("http://localhost:8080/sleep", {
-            method: "POST",
+          await fetch(
+            "https://student-fitness-performance-tracker-production.up.railway.app/sleep",
+            {
+              method: "POST",
 
-            headers: {
-              "Content-Type": "application/json",
+              headers: {
+                "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify({
+                sleepDate: document.getElementById("sleepDate").value,
+                hoursSlept: parseFloat(
+                  document.getElementById("hoursSlept").value,
+                ),
+              }),
             },
-
-            body: JSON.stringify({
-              sleepDate: document.getElementById("sleepDate").value,
-              hoursSlept: parseFloat(
-                document.getElementById("hoursSlept").value,
-              ),
-            }),
-          });
+          );
 
           this.reset();
 
@@ -370,20 +379,23 @@
         .addEventListener("submit", async function (e) {
           e.preventDefault();
 
-          await fetch("http://localhost:8080/steps", {
-            method: "POST",
+          await fetch(
+            "https://student-fitness-performance-tracker-production.up.railway.app/steps",
+            {
+              method: "POST",
 
-            headers: {
-              "Content-Type": "application/json",
+              headers: {
+                "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify({
+                stepDate: document.getElementById("stepDate").value,
+                stepsWalked: parseInt(
+                  document.getElementById("stepsWalked").value,
+                ),
+              }),
             },
-
-            body: JSON.stringify({
-              stepDate: document.getElementById("stepDate").value,
-              stepsWalked: parseInt(
-                document.getElementById("stepsWalked").value,
-              ),
-            }),
-          });
+          );
 
           this.reset();
 
@@ -395,20 +407,23 @@
         .addEventListener("submit", async function (e) {
           e.preventDefault();
 
-          await fetch("http://localhost:8080/water", {
-            method: "POST",
+          await fetch(
+            "https://student-fitness-performance-tracker-production.up.railway.app/water",
+            {
+              method: "POST",
 
-            headers: {
-              "Content-Type": "application/json",
+              headers: {
+                "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify({
+                waterDate: document.getElementById("waterDate").value,
+                litersDrank: parseFloat(
+                  document.getElementById("litersDrank").value,
+                ),
+              }),
             },
-
-            body: JSON.stringify({
-              waterDate: document.getElementById("waterDate").value,
-              litersDrank: parseFloat(
-                document.getElementById("litersDrank").value,
-              ),
-            }),
-          });
+          );
 
           this.reset();
 
@@ -419,9 +434,12 @@
           return;
         }
 
-        await fetch(`http://localhost:8080/sleep/${id}`, {
-          method: "DELETE",
-        });
+        await fetch(
+          `https://student-fitness-performance-tracker-production.up.railway.app/sleep/${id}`,
+          {
+            method: "DELETE",
+          },
+        );
 
         loadSleep();
       }
@@ -430,9 +448,12 @@
           return;
         }
 
-        await fetch(`http://localhost:8080/water/${id}`, {
-          method: "DELETE",
-        });
+        await fetch(
+          `https://student-fitness-performance-tracker-production.up.railway.app/water/${id}`,
+          {
+            method: "DELETE",
+          },
+        );
 
         loadWater();
       }
@@ -441,9 +462,12 @@
           return;
         }
 
-        await fetch(`http://localhost:8080/steps/${id}`, {
-          method: "DELETE",
-        });
+        await fetch(
+          `https://student-fitness-performance-tracker-production.up.railway.app/steps/${id}`,
+          {
+            method: "DELETE",
+          },
+        );
 
         loadSteps();
       }
