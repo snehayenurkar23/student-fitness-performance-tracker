@@ -157,6 +157,11 @@
             <li class="nav-item">
               <a class="nav-link" href="About.html">About</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="#" onclick="logout()">
+                Logout
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -278,6 +283,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+      if (!localStorage.getItem("userId")) {
+        window.location.href = "login.html";
+      }
       async function loadAnalytics() {
         const totalWorkouts = await fetch(
           "https://student-fitness-performance-tracker-production.up.railway.app/analytics/total-workouts",
