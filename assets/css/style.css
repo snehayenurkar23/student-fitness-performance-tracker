@@ -5,17 +5,19 @@
 /* --- Custom Variables & Theme System --- */
 :root {
   --primary-gradient: linear-gradient(135deg, #1a0b2e, #063940);
-  --accent-color: #6E43FF;
+  --accent-color: #6e43ff;
   --success-color: #0f766e;
   --info-color: #2563eb;
   --warning-color: #f59e0b;
-  --danger-color: #8B1E3F;
+  --danger-color: #8b1e3f;
   --card-bg: #ffffff;
   --input-border: #e2e8f0;
   --text-dark: #1e293b;
   --text-muted: #64748b;
-  --font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  
+  --font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
   /* Color Coding for Health Stats */
   --stat-workout: #6366f1;
   --stat-calories: #ef4444;
@@ -33,34 +35,68 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   color: #0f172a;
 }
 
 /* --- Premium Header & Hero --- */
-header, .hero-section, section[style*="linear-gradient"] {
+header,
+.hero-section,
+section[style*="linear-gradient"] {
   background: var(--primary-gradient) !important;
   padding: 4rem 1.5rem !important;
   position: relative;
   overflow: hidden;
 }
 
-header::before, .hero-section::before, section[style*="linear-gradient"]::before {
+/* Ensure page hero headers are always white */
+header h1, header h2, header h3,
+.hero-section h1, .hero-section h2, .hero-section h3,
+section[style*="linear-gradient"] h1,
+section[style*="linear-gradient"] h2,
+section[style*="linear-gradient"] h3 {
+  color: #ffffff !important;
+}
+
+/* Ensure subtext below hero headers is white and normal weight (not bold) */
+header p,
+.hero-section p,
+section[style*="linear-gradient"] p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: normal !important;
+}
+
+header::before,
+.hero-section::before,
+section[style*="linear-gradient"]::before {
   content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(110, 67, 255, 0.1) 0%, rgba(0, 0, 0, 0) 60%);
+  background: radial-gradient(
+    circle,
+    rgba(110, 67, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0) 60%
+  );
   pointer-events: none;
   animation: pulse-ambient 15s infinite alternate;
 }
 
 @keyframes pulse-ambient {
-  0% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(180deg) scale(1.1); }
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(180deg) scale(1.1);
+  }
 }
 
 /* --- Navbar styling --- */
@@ -81,7 +117,9 @@ header::before, .hero-section::before, section[style*="linear-gradient"]::before
 
 .nav-link {
   font-weight: 500;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .nav-link:hover {
@@ -99,13 +137,17 @@ header::before, .hero-section::before, section[style*="linear-gradient"]::before
   background-color: var(--card-bg);
   border: 1px solid rgba(226, 232, 240, 0.8);
   border-radius: 16px !important;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s ease;
   overflow: hidden;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+  box-shadow:
+    0 12px 20px -8px rgba(0, 0, 0, 0.08),
+    0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
 }
 
 .card-title {
@@ -113,28 +155,48 @@ header::before, .hero-section::before, section[style*="linear-gradient"]::before
 }
 
 /* --- Stat Card Highlight Borders --- */
-#totalWorkouts { color: var(--stat-workout); }
-#totalWorkouts + h5, .card:has(#totalWorkouts), .card:has(#totalWorkoutsByUser) {
+#totalWorkouts {
+  color: var(--stat-workout);
+}
+#totalWorkouts + h5,
+.card:has(#totalWorkouts),
+.card:has(#totalWorkoutsByUser) {
   border-top: 4px solid var(--stat-workout) !important;
 }
 
-#totalCalories { color: var(--stat-calories); }
-#totalCalories + h5, .card:has(#totalCalories), .card:has(#totalCaloriesByUser) {
+#totalCalories {
+  color: var(--stat-calories);
+}
+#totalCalories + h5,
+.card:has(#totalCalories),
+.card:has(#totalCaloriesByUser) {
   border-top: 4px solid var(--stat-calories) !important;
 }
 
-#totalSleep { color: var(--stat-sleep); }
-#totalSleep + h5, .card:has(#totalSleep), .card:has(#totalSleepByUser) {
+#totalSleep {
+  color: var(--stat-sleep);
+}
+#totalSleep + h5,
+.card:has(#totalSleep),
+.card:has(#totalSleepByUser) {
   border-top: 4px solid var(--stat-sleep) !important;
 }
 
-#totalSteps { color: var(--stat-steps); }
-#totalSteps + h5, .card:has(#totalSteps), .card:has(#totalStepsByUser) {
+#totalSteps {
+  color: var(--stat-steps);
+}
+#totalSteps + h5,
+.card:has(#totalSteps),
+.card:has(#totalStepsByUser) {
   border-top: 4px solid var(--stat-steps) !important;
 }
 
-#totalWater { color: var(--stat-water); }
-#totalWater + h5, .card:has(#totalWater), .card:has(#totalWaterByUser) {
+#totalWater {
+  color: var(--stat-water);
+}
+#totalWater + h5,
+.card:has(#totalWater),
+.card:has(#totalWaterByUser) {
   border-top: 4px solid var(--stat-water) !important;
 }
 
@@ -143,7 +205,9 @@ header::before, .hero-section::before, section[style*="linear-gradient"]::before
   border: 1.5px solid var(--input-border);
   border-radius: 10px;
   padding: 0.75rem 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   font-size: 0.95rem;
 }
 
@@ -153,19 +217,28 @@ header::before, .hero-section::before, section[style*="linear-gradient"]::before
   outline: none;
 }
 
-button[type="submit"], .btn-primary, .btn-success, .btn-info, .btn-warning {
+button[type="submit"],
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning {
   border-radius: 10px;
   padding: 0.75rem 1.5rem;
   font-weight: 600;
-  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-button[type="submit"]:hover, .btn:hover {
+button[type="submit"]:hover,
+.btn:hover {
   filter: brightness(1.08);
   transform: translateY(-1px);
 }
 
-button[type="submit"]:active, .btn:active {
+button[type="submit"]:active,
+.btn:active {
   transform: translateY(1px);
 }
 
@@ -207,7 +280,7 @@ button[type="submit"]:active, .btn:active {
   background-color: #f1f5f9;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .progress-bar {
@@ -236,11 +309,14 @@ footer p {
 
 /* Tablet & Mobile Viewports */
 @media (max-width: 992px) {
-  header, .hero-section, section[style*="linear-gradient"] {
+  header,
+  .hero-section,
+  section[style*="linear-gradient"] {
     padding: 3rem 1rem !important;
   }
-  
-  header h1, .hero-section h1 {
+
+  header h1,
+  .hero-section h1 {
     font-size: 2.2rem !important;
   }
 }
@@ -253,18 +329,20 @@ footer p {
   }
 
   /* Font scaling */
-  header h1, .hero-section h1 {
+  header h1,
+  .hero-section h1 {
     font-size: 1.8rem !important;
   }
-  
-  header h2, .hero-section h2 {
+
+  header h2,
+  .hero-section h2 {
     font-size: 1.5rem !important;
   }
 
   h2 {
     font-size: 1.6rem !important;
   }
-  
+
   h4 {
     font-size: 1.25rem !important;
   }
@@ -278,19 +356,20 @@ footer p {
   .card-body form .row.g-3 {
     --bs-gutter-y: 1rem;
   }
-  
+
   .card-body form .row.g-3 > [class*="col-"] {
     width: 100% !important;
   }
-  
+
   /* Tables formatting for mobile card-view fallback or scroll */
   .table-responsive {
     margin-bottom: 1.5rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  
-  .table th, .table td {
+
+  .table th,
+  .table td {
     padding: 0.75rem 0.5rem !important;
     font-size: 0.85rem;
   }
@@ -301,7 +380,7 @@ footer p {
     padding-bottom: 1rem;
     text-align: center;
   }
-  
+
   .navbar-nav .nav-item {
     margin: 0.5rem 0;
   }
@@ -310,7 +389,7 @@ footer p {
   .flex-md-row-reverse {
     flex-direction: column !important;
   }
-  
+
   img.img-fluid {
     margin-bottom: 1.5rem;
   }
@@ -318,16 +397,21 @@ footer p {
 
 /* Small Mobile Screens */
 @media (max-width: 576px) {
-  header, .hero-section, section[style*="linear-gradient"] {
+  header,
+  .hero-section,
+  section[style*="linear-gradient"] {
     padding: 2.5rem 0.75rem !important;
   }
-  
-  header h1, .hero-section h1 {
+
+  header h1,
+  .hero-section h1 {
     font-size: 1.5rem !important;
   }
 
   /* Single-column grid for statistics card list on extra small devices */
-  .col-md-4, .col-md-6, .col-md-3 {
+  .col-md-4,
+  .col-md-6,
+  .col-md-3 {
     width: 100% !important;
   }
 
@@ -343,7 +427,7 @@ footer p {
   .progress {
     height: 20px !important;
   }
-  
+
   .progress-bar {
     font-size: 0.75rem;
   }
