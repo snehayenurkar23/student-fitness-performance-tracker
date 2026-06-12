@@ -9,6 +9,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
   <body
@@ -86,33 +87,58 @@
     </div>
 
     <script>
-      const API_BASE =
+      var API_BASE =
         "https://student-fitness-performance-tracker-production.up.railway.app";
 
       document
         .getElementById("loginForm")
-        .addEventListener("submit", async (e) => {
+        .addEventListener("submit", function (e) {
           e.preventDefault();
 
-          const response = await fetch(`${API_BASE}/login`, {
+          var submitBtn = document.querySelector('#loginForm button[type="submit"]');
+          var originalText = submitBtn.innerText;
+
+          // Loading state feedback
+          submitBtn.disabled = true;
+          submitBtn.innerText = "Logging in...";
+
+          var usernameVal = document.getElementById("username").value;
+          var passwordVal = document.getElementById("password").value;
+
+          fetch(API_BASE + "/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              username: document.getElementById("username").value,
-
-              password: document.getElementById("password").value,
+              username: usernameVal,
+              password: passwordVal,
             }),
-          });
-
-          if (response.ok) {
-            const user = await response.json();
-
-            localStorage.setItem("userId", user.id);
-
+          })
+          .then(function (response) {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Invalid username or password.");
+            }
+          })
+          .then(function (user) {
+            try {
+              localStorage.setItem("userId", user.id);
+            } catch (err) {
+              console.warn("localStorage error:", err);
+            }
+            document.cookie = "userId=" + user.id + ";path=/;max-age=31536000";
             location.href = "index.html";
-          }
+          })
+          .catch(function (error) {
+            console.error(error);
+            alert("Error: " + error.message);
+          })
+          .then(function () {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
+          });
         });
     </script>
   </body>
